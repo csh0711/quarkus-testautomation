@@ -1,0 +1,13 @@
+quarkus:
+  datasource:
+    db-kind: postgresql
+    username:
+    password:
+    jdbc:
+      driver: org.postgresql.Driver
+      url:
+  jackson:
+    fail-on-unknown-properties: true
+  hibernate-orm:
+    database:
+      generation: drop-and-create

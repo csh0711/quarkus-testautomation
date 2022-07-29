@@ -1,0 +1,6 @@
+quarkus:
+  datasource:
+    username: postgres
+    password: mysecretpassword
+    jdbc:
+      url: jdbc:postgresql://localhost:5432/superherodb
