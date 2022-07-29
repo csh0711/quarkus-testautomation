@@ -1,3 +1,6 @@
+[![Java CI with Maven](https://github.com/csh0711/quarkus-testautomation/actions/workflows/maven.yml/badge.svg?branch=master)](https://github.com/csh0711/quarkus-testautomation/actions/workflows/maven.yml)
+[![Pure Kotlin](https://img.shields.io/badge/100%25-kotlin-blue.svg)](https://kotlinlang.org/)
+
 # Test Automation with Quarkus
 
 Example of a simple [Quarkus](https://quarkus.io/) application written in [Kotlin](https://kotlinlang.org/).
