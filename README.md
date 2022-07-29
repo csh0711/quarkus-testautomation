@@ -8,7 +8,7 @@ Shows how comprehensive **Test Automation** might be realized using
 - [Testcontainers](https://www.testcontainers.org/)
 
 ## Overview
-+ [The Quarkus/Kotlin application _Superhero Repository_](#the-quarkus-kotlin-application-superhero-repository)
++ [The Quarkus/Kotlin application _Superhero Repository_](#the-quarkuskotlin-application-_superhero-repository_)
 + + [Running the application (in dev mode)](#running-the-application-in-dev-mode)
 + + [Using the application](#using-the-application)
 + [Test Automation](#test-automation)
@@ -119,7 +119,8 @@ Of course, it's also possible to use [Quarkus' Continous Testing Mode](https://q
 
 **Note:** When executing the End-to-End test `SuperheroRegistryEnd2EndTests.kt` the PostgreSQL database is replaced with 
 a [Tesctontainers](https://www.testcontainers.org/) instance. Therefore, a Docker daemon needs to be running on your 
-machine. 
+machine. If for some reasons installing Docker daemon (e.g. with Docker Desktop) is not possible you should have have a 
+look at [Testcontainers Cloud](https://www.testcontainers.cloud/).
 
 ## Further Hints
 
