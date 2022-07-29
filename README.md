@@ -8,14 +8,14 @@ Shows how comprehensive **Test Automation** might be realized using
 - [Testcontainers](https://www.testcontainers.org/)
 
 ## Overview
-+ [The Quarkus/Kotlin application _Superhero Repository_](#the-quarkuskotlin-application-_superhero-repository_)
++ [The Quarkus/Kotlin application _Superhero Repository_](#the-quarkuskotlin-application-superhero-repository)
 + + [Running the application (in dev mode)](#running-the-application-in-dev-mode)
 + + [Using the application](#using-the-application)
 + [Test Automation](#test-automation)
 + + [Executing the tests](#executing-the-tests)
 + [Further Hints](#further-hints)
 
-## The Quarkus/Kotlin application _Superhero Repository_
+## The Quarkus/Kotlin application Superhero Repository
 <img src="quarkus-testautomation.png" alt="Scenario" width="750"/>
 
 The Quarkus/Kotlin application represents a _Superhero Repository_ where _Superheros_ might be stored and retrieved.
@@ -41,7 +41,8 @@ You can run the application in dev mode (what enables live coding) using:
 ./mvnw -Dquarkus-profile=prod quarkus:dev 
 ```
 **Note:** To start the application please make sure to use the `prod` profile and have a
-[PostgreSQL database](#setup-postgresql-with-docker) running as configured in the `application-prod.yml`:
+[PostgreSQL database](#setup-postgresql-with-docker-to-run-the-application) running as configured 
+in the `application-prod.yml`:
 
 ```yaml
 quarkus:
@@ -54,8 +55,8 @@ quarkus:
 
 ### Using the application
 
-After successfully starting the application you can add a _Superhero_ with a `POST` call the endpoint
-`http://localhost:8080/superheroes` with request like this:
+After successfully starting the application you can add a _Superhero_ with a `POST` request the endpoint
+`http://localhost:8080/superheroes` like this:
 ```json
 {
   "name": "Deadpool",
@@ -112,7 +113,7 @@ or by running the corresponding Maven command:
 ```
 
 
-Of course, it's also possible to use [Quarkus' Continous Testing Mode](https://quarkus.io/guides/continuous-testing):
+Of course, it's also possible to use [Quarkus' Continuous Testing Mode](https://quarkus.io/guides/continuous-testing):
 ```shell script
 ./mvnw quarkus:test
 ```
