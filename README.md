@@ -43,9 +43,9 @@ You can run the application in dev mode (what enables live coding) using:
 ```shell script
 ./mvnw -Dquarkus-profile=prod quarkus:dev 
 ```
-**Note:** To start the application please make sure to use the `prod` profile and have a
-[PostgreSQL database](#setup-postgresql-with-docker-to-run-the-application) running as configured 
-in the `application-prod.yml`:
+**Note:** If you want to start the application using a PostgreSQL database please make sure to use the 
+`prod` profile (`-Dquarkus-profile=prod`) and have a [PostgreSQL database](#setup-postgresql-with-docker-to-run-the-application) 
+running as configured in the `application-prod.yml`:
 
 ```yaml
 quarkus:
@@ -55,6 +55,11 @@ quarkus:
   jdbc:
     url: jdbc:postgresql://localhost:5432/superherodb
 ``` 
+Otherwise, for a first test it might be easier to start the application with an embedded H2 by using 
+the `dev` profile at startup (`-Dquarkus-profile=dev`):
+```shell script
+./mvnw -Dquarkus-profile=dev quarkus:dev 
+```
 
 ### Using the application
 
