@@ -1,3 +1,8 @@
+quarkus:
+  hibernate-orm:
+    database:
+      generation: drop-and-create
+
 # Datasource config for End2End tests using a testcontainers instance
 "%postgresql-testcontainers-test":
   quarkus:

@@ -13,7 +13,7 @@ Shows how comprehensive **Test Automation** might be realized using
 
 ## Overview
 + [The Quarkus/Kotlin application _Superhero Repository_](#the-quarkuskotlin-application-superhero-repository)
-+ + [Running the application (in Quarkus' dev mode)](#running-the-application-in-quarkus-dev-mode)
++ + [Running the application](#running-the-application)
 + + [Using the application](#using-the-application)
 + [Test Automation](#test-automation)
 + + [Executing the tests](#executing-the-tests)
@@ -39,32 +39,35 @@ Superhero can be stored tough but - in order to protect the Superhero's secret i
 be exposed afterwards.
 3. The **_SuperheroRepository_** that encapsulates the access to the (PostgreSQL) database.
 
-### Running the application (in Quarkus' dev mode)
+### Running the application
 
 You can run the application in Quarkus' dev mode (what enables live coding) using:
 
 ```shell script
 ./mvnw -Dquarkus-profile=dev quarkus:dev 
 ```
-The command above starts the application with an embedded H2 by using  the `dev` profile (`-Dquarkus-profile=dev`).
+The command above uses the `dev` profile (`-Dquarkus-profile=dev`) and starts the application with an embedded H2.
 
-In case you want to use a _real_ PostgreSQL database instance, please start the app with the `prod` profile 
+If, however, you want to use a _real_ PostgreSQL database instance, please start the app with the `prod` profile 
 (`-Dquarkus-profile=prod`):
 
 ```shell script
 ./mvnw -Dquarkus-profile=prod quarkus:dev 
 ```
 **Note:** If using the `prod` profile make sure to have a 
-[PostgreSQL database](#setup-postgresql-with-docker-to-run-the-application) running as configured in the 
-`application-prod.yml`:
+[PostgreSQL database](#setup-postgresql-with-docker-to-run-the-application) running as configured in the `"%prod":` 
+section of the `application.yml`:
 
 ```yaml
-quarkus:
-  datasource:
-    username: postgres
-    password: mysecretpassword
-  jdbc:
-    url: jdbc:postgresql://localhost:5432/superherodb
+"%prod":
+  quarkus:
+    datasource:
+      db-kind: postgresql
+      username: postgres
+      password: mysecretpassword
+      jdbc:
+        driver: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/superherodb
 ```
 
 ### Using the application
@@ -144,7 +147,7 @@ look at [Testcontainers Cloud](https://www.testcontainers.cloud/).
 ## Further Hints
 
 ### Setup PostgreSQL with Docker to run the application
-To provide a dockerized PostgreSQL when [running the application](#running-the-application-in-quarkus-dev-mode) 
+To provide a dockerized PostgreSQL when [running the application](#running-the-application) 
 with the `prod` profile the following steps need to be executed:
 ```shell script
 docker pull postgres  
