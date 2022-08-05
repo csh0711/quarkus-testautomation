@@ -1,13 +1,19 @@
-quarkus:
-  datasource:
-    db-kind: postgresql
-    username:
-    password:
-    jdbc:
-      driver: org.postgresql.Driver
-      url:
-  jackson:
-    fail-on-unknown-properties: true
-  hibernate-orm:
-    database:
-      generation: drop-and-create
+# Datasource config for End2End tests using a testcontainers instance
+"%postgresql-testcontainers-test":
+  quarkus:
+    datasource:
+      db-kind: postgresql
+      username:
+      password:
+      jdbc:
+        driver: org.postgresql.Driver
+        url:
+
+# Datasource config for End2End tests using an H2 instance
+"%h2-test":
+  quarkus:
+    datasource:
+      db-kind: h2
+      jdbc:
+        driver: org.h2.Driver
+        url: jdbc:h2:mem:superherodb;DB_CLOSE_DELAY=-1
