@@ -12,7 +12,7 @@ Shows how comprehensive **Test Automation** might be realized using
 
 ## Overview
 + [The Quarkus/Kotlin application _Superhero Repository_](#the-quarkuskotlin-application-superhero-repository)
-+ + [Running the application (in dev mode)](#running-the-application-in-dev-mode)
++ + [Running the application (in dev mode)](#running-the-application-in-quarkus-dev-mode)
 + + [Using the application](#using-the-application)
 + [Test Automation](#test-automation)
 + + [Executing the tests](#executing-the-tests)
@@ -37,9 +37,9 @@ Superhero can be stored tough but - in order to protect the Superhero's secret i
 be exposed afterwards.
 3. The **_SuperheroRepository_** that encapsulates the access to the (PostgreSQL) database.
 
-### Running the application (in dev mode)
+### Running the application (in Quarkus' dev mode)
 
-You can run the application in dev mode (what enables live coding) using:
+You can run the application in Quarkus' dev mode (what enables live coding) using:
 ```shell script
 ./mvnw -Dquarkus-profile=prod quarkus:dev 
 ```
@@ -94,13 +94,17 @@ uncomment the `initialize()` function call in the startup bean in `InitializeDat
 ```kotlin
 constructor(superheroService: SuperheroService) {
   this.superheroService = superheroService
-  initialize() // uncomment this to create a list of Superheros after starting the app
+  initialize() // uncomment this line to create a list of Superheros after starting the app
 }
 ```
 
 ## Test Automation
-Automated tests might be grouped at different levels of granularity, and how tests should be distributed among 
-the different groups in terms of quantity:
+The "Test Pyramid" is a simplified model describing how software testing should be done in different levels of 
+granularity and how many tests should be on which level. 
+([see Cloud Native Testing: Spring Boot](https://github.com/test-automation-in-practice/cnt-spring-boot#testing-basics-with-junit-5-and-spring-boot))
+
+Based on that generalized model, a test automation focused pyramid for backend applications could look 
+something like this:
 
 <img src="test-pyramid.png" alt="Scenario" width="400"/>
 
@@ -109,7 +113,7 @@ Testing the _Superhero Registry_ application requires tests of each group:
 SuperheroServiceUnitTests.kt`). 
 - **Technology Integration Tests**: Tests in this group are used to verify code written to use a particular technology
   (see `SuperheroResourceIntegrationTests.kt`)
-- **End-to-End Tests**: Ensure that the entire control flow works from request to response.
+- **End-to-End Tests**: Ensure that the entire control flow works from consumer request to response.
 Or to put it this way: Whether the interaction of all the components - tested isolated with Unit or Integration 
 Tests - works as well (see `SuperheroRegistryEnd2EndTests.kt`).
 

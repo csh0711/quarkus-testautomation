@@ -3,6 +3,10 @@ package info.novatec.quarkus
 import io.quarkus.runtime.Startup
 import javax.enterprise.context.ApplicationScoped
 
+/**
+ * Startup bean that might be used to automatically create a sample
+ * list of [Superhero]s after application start.
+ */
 @Startup
 @ApplicationScoped
 class InitializeData {
@@ -10,7 +14,7 @@ class InitializeData {
 
     constructor(superheroService: SuperheroService) {
         this.superheroService = superheroService
-        // initialize() // uncomment to create a list of Superheros after starting the app
+        // initialize() // uncomment this line to create a list of Superheros after starting the app
     }
 
     private fun initialize() =
