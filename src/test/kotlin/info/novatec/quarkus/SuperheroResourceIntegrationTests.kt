@@ -4,11 +4,13 @@ import JsonMatcher.Companion.jsonEqualTo
 import io.mockk.every
 import io.quarkiverse.test.junit.mockk.InjectMock
 import io.quarkus.test.junit.QuarkusTest
+import io.quarkus.test.junit.TestProfile
 import io.restassured.RestAssured.given
 import org.junit.jupiter.api.Test
 import javax.ws.rs.core.MediaType.APPLICATION_JSON
 
 @QuarkusTest
+@TestProfile(H2TestProfiles::class)
 class SuperheroResourceIntegrationTests {
 
     @InjectMock
