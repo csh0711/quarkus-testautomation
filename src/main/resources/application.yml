@@ -1,13 +1,26 @@
 quarkus:
-  datasource:
-    db-kind: postgresql
-    username:
-    password:
-    jdbc:
-      driver: org.postgresql.Driver
-      url:
   jackson:
     fail-on-unknown-properties: true
-  hibernate-orm:
-    database:
-      generation: drop-and-create
+
+# To start the application using a PostgresSQL instance (./mvnw -Dquarkus-profile=prod quarkus:dev)
+"%prod":
+  quarkus:
+    datasource:
+      db-kind: postgresql
+      username: postgres
+      password: mysecretpassword
+      jdbc:
+        driver: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/superherodb
+
+# To start the application using an H2 (./mvnw -Dquarkus-profile=dev quarkus:dev)
+"%dev":
+  quarkus:
+    datasource:
+      db-kind: h2
+      jdbc:
+        driver: org.h2.Driver
+        url: jdbc:h2:mem:superherodb;DB_CLOSE_DELAY=-1
+    hibernate-orm:
+      database:
+        generation: drop-and-create
