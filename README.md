@@ -9,14 +9,16 @@ Shows how comprehensive **Test Automation** might be realized using
 - [MockK](https://mockk.io/)
 - [Strikt](https://strikt.io/)
 - [Testcontainers](https://www.testcontainers.org/)
+- [Embedded H2](https://www.h2database.com/) 
 
 ## Overview
 + [The Quarkus/Kotlin application _Superhero Repository_](#the-quarkuskotlin-application-superhero-repository)
-+ + [Running the application (in dev mode)](#running-the-application-in-quarkus-dev-mode)
++ + [Running the application (in Quarkus' dev mode)](#running-the-application-in-quarkus-dev-mode)
 + + [Using the application](#using-the-application)
 + [Test Automation](#test-automation)
 + + [Executing the tests](#executing-the-tests)
 + [Further Hints](#further-hints)
++ + [Setup PostgreSQL with Docker to run the application](#setup-postgresql-with-docker-to-run-the-application)
 
 ## The Quarkus/Kotlin application Superhero Repository
 <img src="quarkus-testautomation.png" alt="Scenario" width="750"/>
@@ -40,12 +42,21 @@ be exposed afterwards.
 ### Running the application (in Quarkus' dev mode)
 
 You can run the application in Quarkus' dev mode (what enables live coding) using:
+
+```shell script
+./mvnw -Dquarkus-profile=dev quarkus:dev 
+```
+The command above starts the application with an embedded H2 by using  the `dev` profile (`-Dquarkus-profile=dev`).
+
+In case you want to use a _real_ PostgreSQL database instance, please start the app with the `prod` profile 
+(`-Dquarkus-profile=prod`):
+
 ```shell script
 ./mvnw -Dquarkus-profile=prod quarkus:dev 
 ```
-**Note:** If you want to start the application using a PostgreSQL database please make sure to use the 
-`prod` profile (`-Dquarkus-profile=prod`) and have a [PostgreSQL database](#setup-postgresql-with-docker-to-run-the-application) 
-running as configured in the `application-prod.yml`:
+**Note:** If using the `prod` profile make sure to have a 
+[PostgreSQL database](#setup-postgresql-with-docker-to-run-the-application) running as configured in the 
+`application-prod.yml`:
 
 ```yaml
 quarkus:
@@ -54,11 +65,6 @@ quarkus:
     password: mysecretpassword
   jdbc:
     url: jdbc:postgresql://localhost:5432/superherodb
-``` 
-Otherwise, for a first test it might be easier to start the application with an embedded H2 by using 
-the `dev` profile at startup (`-Dquarkus-profile=dev`):
-```shell script
-./mvnw -Dquarkus-profile=dev quarkus:dev 
 ```
 
 ### Using the application
@@ -110,14 +116,14 @@ something like this:
 
 Testing the _Superhero Registry_ application requires tests of each group:
 - **Function Unit Tests**: Test the core business logic and mock everything not immediate necessary (see 
-SuperheroServiceUnitTests.kt`). 
+`SuperheroServiceUnitTests.kt`). 
 - **Technology Integration Tests**: Tests in this group are used to verify code written to use a particular technology
   (see `SuperheroResourceIntegrationTests.kt`)
-- **End-to-End Tests**: Ensure that the entire control flow works from consumer request to response.
+- **End-to-End Tests**: Ensure that the entire control flow works from a consumer's request to the response.
 Or to put it this way: Whether the interaction of all the components - tested isolated with Unit or Integration 
 Tests - works as well (see `SuperheroRegistryEnd2EndTests.kt`).
 
-## Executing the tests
+### Executing the tests
 The tests can be either executed directly within your IDE (e.g. in IntelliJ `Run` > `SuperheroServiceUnitTests.kt` etc.) 
 or by running the corresponding Maven command:
 ```shell script
@@ -137,8 +143,9 @@ look at [Testcontainers Cloud](https://www.testcontainers.cloud/).
 
 ## Further Hints
 
-#### Setup PostgreSQL with Docker to run the application
-Execute the following steps:
+### Setup PostgreSQL with Docker to run the application
+To provide a dockerized PostgreSQL when [running the application](#running-the-application-in-quarkus-dev-mode) 
+with the `prod` profile the following steps need to be executed:
 ```shell script
 docker pull postgres  
 
