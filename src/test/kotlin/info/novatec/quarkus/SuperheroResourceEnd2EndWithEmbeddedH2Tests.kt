@@ -1,6 +1,7 @@
 package info.novatec.quarkus
 
-import JsonMatcher.Companion.jsonEqualTo
+import info.novatec.quarkus.utils.H2TestProfiles
+import info.novatec.quarkus.utils.JsonMatcher.Companion.jsonEqualTo
 import io.quarkus.test.common.QuarkusTestResource
 import io.quarkus.test.h2.H2DatabaseTestResource
 import io.quarkus.test.junit.QuarkusTest

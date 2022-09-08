@@ -1,4 +1,4 @@
-package info.novatec.quarkus
+package info.novatec.quarkus.utils
 
 import io.quarkus.test.junit.QuarkusTestProfile
 

@@ -1,6 +1,5 @@
 package info.novatec.quarkus
 
-import info.novatec.quarkus.Superhero
 import org.jboss.resteasy.annotations.jaxrs.PathParam
 import javax.ws.rs.GET
 import javax.ws.rs.POST
@@ -15,8 +14,7 @@ class SuperheroResource(
 ) {
     @GET
     @Path("/")
-    fun getAllSuperheroes(): Response =
-        Response.ok(service.findSuperheroes()).build()
+    fun getAllSuperheroes(): Response = Response.ok(service.findSuperheroes()).build()
 
     @GET
     @Path("/{id}")

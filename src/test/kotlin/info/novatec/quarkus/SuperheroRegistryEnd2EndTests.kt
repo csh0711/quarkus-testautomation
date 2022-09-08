@@ -1,6 +1,7 @@
 package info.novatec.quarkus
 
-import JsonMatcher.Companion.jsonEqualTo
+import info.novatec.quarkus.utils.JsonMatcher.Companion.jsonEqualTo
+import info.novatec.quarkus.utils.PostgresTestcontainerTestProfiles
 import io.quarkus.test.junit.QuarkusTest
 import io.quarkus.test.junit.TestProfile
 import io.restassured.RestAssured.given

@@ -1,7 +1,5 @@
 package info.novatec.quarkus
 
-import info.novatec.quarkus.Superhero
-import info.novatec.quarkus.SuperheroRepository
 import javax.enterprise.context.ApplicationScoped
 import javax.transaction.Transactional
 
@@ -10,11 +8,9 @@ class SuperheroService(
     private val repository: SuperheroRepository
 ) {
 
-    fun findSuperhero(id: Long) =
-        repository.findById(id)?.anonymize()
+    fun findSuperheroes(): List<AnonymizedSuperhero> = repository.listAll().map { it.anonymize() }
 
-    fun findSuperheroes(): List<AnonymizedSuperhero> =
-        repository.listAll().map { it.anonymize() }
+    fun findSuperhero(id: Long) = repository.findById(id)?.anonymize()
 
     @Transactional
     fun addSuperhero(superhero: Superhero): AnonymizedSuperhero {
