@@ -18,8 +18,8 @@
     <quarkus.junit5.mockk.version>1.1.1</quarkus.junit5.mockk.version>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-    <quarkus.platform.version>2.12.0.Final</quarkus.platform.version>
-    <restassured.version>5.1.1</restassured.version>
+    <quarkus.platform.version>2.12.3.Final</quarkus.platform.version>
+    <restassured.version>5.2.0</restassured.version>
     <strikt.version>0.34.1</strikt.version>
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
   </properties>
