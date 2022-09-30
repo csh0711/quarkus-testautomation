@@ -13,12 +13,12 @@
     <compiler-plugin.version>3.8.1</compiler-plugin.version>
     <jsonassert.version>1.5.1</jsonassert.version>
     <kotlin.version>1.7.10</kotlin.version>
-    <maven.compiler.release>11</maven.compiler.release>
+    <maven.compiler.release>17</maven.compiler.release>
     <mockk.version>1.12.5</mockk.version>
     <quarkus.junit5.mockk.version>1.1.1</quarkus.junit5.mockk.version>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-    <quarkus.platform.version>2.12.3.Final</quarkus.platform.version>
+    <quarkus.platform.version>2.13.0.Final</quarkus.platform.version>
     <restassured.version>5.2.0</restassured.version>
     <strikt.version>0.34.1</strikt.version>
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
@@ -205,15 +205,18 @@
         </dependencies>
         <configuration>
           <javaParameters>true</javaParameters>
-          <jvmTarget>11</jvmTarget>
+          <jvmTarget>17</jvmTarget>
           <compilerPlugins>
             <plugin>all-open</plugin>
             <plugin>no-arg</plugin>
           </compilerPlugins>
           <pluginOptions>
+            <!-- all-open -->
             <option>all-open:annotation=javax.ws.rs.Path</option>
             <option>all-open:annotation=javax.enterprise.context.ApplicationScoped</option>
             <option>all-open:annotation=io.quarkus.test.junit.QuarkusTest</option>
+            <option>all-open:annotation=javax.persistence.Entity</option>
+            <!-- no-arg -->
             <option>no-arg:annotation=javax.persistence.Entity</option>
           </pluginOptions>
         </configuration>
