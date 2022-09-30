@@ -2,6 +2,7 @@ package info.novatec.quarkus
 
 import info.novatec.quarkus.utils.H2TestProfiles
 import info.novatec.quarkus.utils.JsonMatcher.Companion.jsonEqualTo
+import info.novatec.quarkus.utils.extractId
 import io.quarkus.test.common.QuarkusTestResource
 import io.quarkus.test.h2.H2DatabaseTestResource
 import io.quarkus.test.junit.QuarkusTest
@@ -14,7 +15,7 @@ import javax.ws.rs.core.MediaType.APPLICATION_JSON
 @QuarkusTest
 @QuarkusTestResource(H2DatabaseTestResource::class)
 @TestProfile(H2TestProfiles::class)
-internal class SuperheroResourceEnd2EndWithEmbeddedH2Tests {
+class SuperheroResourceEnd2EndWithEmbeddedH2Tests {
 
     @Test
     fun `create and retrieve superhero`() {
@@ -24,7 +25,8 @@ internal class SuperheroResourceEnd2EndWithEmbeddedH2Tests {
                     "location": "Sedona",
                     "realName": "Wade Winston Wilson",
                     "occupation": "Mercenary"
-                }"""
+                }
+                """
 
         val locationUri = given()
             .contentType(APPLICATION_JSON)
@@ -35,11 +37,13 @@ internal class SuperheroResourceEnd2EndWithEmbeddedH2Tests {
             .extract()
             .header(LOCATION)
 
-        val outputJson = """{
+        val outputJson = """
+            {
                 "id": ${locationUri.extractId()}, 
                 "name": "Deadpool", 
                 "location": "Sedona"
-              }"""
+              }
+              """
 
         given()
             .`when`()[locationUri]
@@ -48,6 +52,4 @@ internal class SuperheroResourceEnd2EndWithEmbeddedH2Tests {
             .contentType(APPLICATION_JSON)
             .body(jsonEqualTo(outputJson))
     }
-
-    private fun String.extractId() = substring(lastIndexOf('/') + 1);
 }

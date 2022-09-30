@@ -28,8 +28,8 @@ class SuperheroResourceIntegrationTests {
 
         val expectedJson = """
             { 
-              "id": 42, 
-              "name": "Batman", 
+              "id": 42,
+              "name": "Batman",
               "location": "Gotham City"
             }
             """

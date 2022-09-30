@@ -2,6 +2,7 @@ package info.novatec.quarkus
 
 import info.novatec.quarkus.utils.JsonMatcher.Companion.jsonEqualTo
 import info.novatec.quarkus.utils.PostgresTestcontainerTestProfiles
+import info.novatec.quarkus.utils.extractId
 import io.quarkus.test.junit.QuarkusTest
 import io.quarkus.test.junit.TestProfile
 import io.restassured.RestAssured.given
@@ -16,10 +17,10 @@ class SuperheroRegistryEnd2EndTests {
     @Test
     fun `create and retrieve superhero`() {
         val inputJson = """
-              { 
-                "name": "Batman", 
-                "location": "Gotham City", 
-                "realName": "Bruce Wayne", 
+              {
+                "name": "Batman",
+                "location": "Gotham City",
+                "realName": "Bruce Wayne",
                 "occupation": "Businessman"
               }
               """
@@ -48,6 +49,4 @@ class SuperheroRegistryEnd2EndTests {
             .contentType(APPLICATION_JSON)
             .body(jsonEqualTo(outputJson))
     }
-
-    private fun String.extractId() = substring(lastIndexOf('/') + 1);
 }
