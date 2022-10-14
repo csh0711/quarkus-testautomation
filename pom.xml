@@ -14,11 +14,11 @@
     <jsonassert.version>1.5.1</jsonassert.version>
     <kotlin.version>1.7.10</kotlin.version>
     <maven.compiler.release>17</maven.compiler.release>
-    <mockk.version>1.12.5</mockk.version>
+    <mockk.version>1.13.2</mockk.version>
     <quarkus.junit5.mockk.version>1.1.1</quarkus.junit5.mockk.version>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-    <quarkus.platform.version>2.13.0.Final</quarkus.platform.version>
+    <quarkus.platform.version>2.13.2.Final</quarkus.platform.version>
     <restassured.version>5.2.0</restassured.version>
     <strikt.version>0.34.1</strikt.version>
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
@@ -71,7 +71,7 @@
     <!-- Test dependencies -->
     <dependency>
       <groupId>io.mockk</groupId>
-      <artifactId>mockk</artifactId>
+      <artifactId>mockk-jvm</artifactId>
       <version>${mockk.version}</version>
       <scope>test</scope>
     </dependency>
